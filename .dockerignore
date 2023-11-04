@@ -1,0 +1,59 @@
+.git*
+.DS_Store
+.idea/
+.vscode/
+
+.circleci/
+.dockerignore
+Dockerfile
+node_modules/
+dist/
+config.local.json
+scripts/
+README.md
+CONTRIBUTING.md
+
+# Testing
+test/
+coverage/
+tap
+jest.config.js
+tests_output
+.nyc_output
+__pycache__
+
+# Logs
+local.log
+test.log
+selenium-debug.log
+npm-debug.log
+newrelic_agent.log
+logfile
+
+# Running locally
+Tiltfile
+tilt
+
+# Installation files
+khulnasoft-monitor/
+*-deployment.yaml
+*-permissions.yaml
+
+# Openshift
+khulnasoft-operator/
+operator-sdk
+opm
+.operator_version
+khulnasoft-monitor-operator-source.yaml
+khulnasoft-monitor-catalog-source.yaml
+scc.txt
+
+# Linting and formatting
+.eslintrc.json
+.prettierignore
+.prettierrc.json
+.commitlintrc.json
+
+# Version control
+.tool-versions
+.nvmrc

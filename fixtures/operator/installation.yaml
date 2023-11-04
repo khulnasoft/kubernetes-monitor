@@ -1,0 +1,20 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: khulnasoft-operator
+  namespace: khulnasoft-monitor
+spec:
+  targetNamespaces:
+  - khulnasoft-monitor
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: khulnasoft-operator
+  namespace: khulnasoft-monitor
+spec:
+  channel: stable
+  name: khulnasoft-operator
+  installPlanApproval: Automatic
+  source: khulnasoft-operator
+  sourceNamespace: openshift-marketplace

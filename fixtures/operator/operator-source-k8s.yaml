@@ -1,0 +1,11 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorSource
+metadata:
+  name: khulnasoft-operator
+  namespace: marketplace
+spec:
+  type: appregistry
+  endpoint: https://quay.io/cnr
+  registryNamespace: khulnasoft-runtime
+  displayName: "Khulnasoft Operator"
+  publisher: "Khulnasoft Ltd."

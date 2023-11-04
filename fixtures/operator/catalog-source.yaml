@@ -1,0 +1,13 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: khulnasoft-operator
+  namespace: openshift-marketplace
+spec:
+  sourceType: grpc
+  image: docker.io/khulnasoft/kubernetes-operator-index:TAG_OVERRIDE
+  displayName: Khulnasoft Operator Bundle
+  publisher: Khulnasoft Ltd.
+  updateStrategy:
+    registryPoll:
+      interval: 1m

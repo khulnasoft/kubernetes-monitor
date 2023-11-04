@@ -1,0 +1,110 @@
+{
+  "containers": [
+    {
+      "env": [
+        {
+          "name": "KHULNASOFT_INTEGRATION_ID",
+          "valueFrom": {
+            "secretKeyRef": {
+              "key": "integrationId",
+              "name": "khulnasoft-monitor"
+            }
+          }
+        },
+        {
+          "name": "KHULNASOFT_WATCH_NAMESPACE"
+        },
+        {
+          "name": "KHULNASOFT_INTEGRATION_API"
+        },
+        {
+          "name": "KHULNASOFT_CLUSTER_NAME",
+          "value": "Production cluster"
+        }
+      ],
+      "image": "khulnasoft/kubernetes-monitor:1.8.5",
+      "imagePullPolicy": "Always",
+      "name": "khulnasoft-monitor",
+      "resources": {
+        "limits": {
+          "cpu": "1",
+          "memory": "2Gi"
+        },
+        "requests": {
+          "cpu": "250m",
+          "memory": "400Mi"
+        }
+      },
+      "terminationMessagePath": "/dev/termination-log",
+      "terminationMessagePolicy": "File",
+      "volumeMounts": [
+        {
+          "mountPath": "/root/.docker",
+          "name": "docker-config",
+          "readOnly": true
+        },
+        {
+          "mountPath": "/khulnasoft-monitor",
+          "name": "temporary-storage"
+        },
+        {
+          "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+          "name": "khulnasoft-monitor-token-ncps2",
+          "readOnly": true
+        }
+      ]
+    }
+  ],
+  "dnsPolicy": "ClusterFirst",
+  "enableServiceLinks": true,
+  "nodeName": "gke-test-node-123456",
+  "priority": 0,
+  "restartPolicy": "Always",
+  "schedulerName": "default-scheduler",
+  "securityContext": {},
+  "serviceAccount": "khulnasoft-monitor",
+  "serviceAccountName": "khulnasoft-monitor",
+  "terminationGracePeriodSeconds": 30,
+  "tolerations": [
+    {
+      "effect": "NoExecute",
+      "key": "node.kubernetes.io/not-ready",
+      "operator": "Exists",
+      "tolerationSeconds": 300
+    },
+    {
+      "effect": "NoExecute",
+      "key": "node.kubernetes.io/unreachable",
+      "operator": "Exists",
+      "tolerationSeconds": 300
+    }
+  ],
+  "volumes": [
+    {
+      "name": "docker-config",
+      "secret": {
+        "defaultMode": 420,
+        "items": [
+          {
+            "key": "dockercfg.json",
+            "path": "config.json"
+          }
+        ],
+        "secretName": "khulnasoft-monitor"
+      }
+    },
+    {
+      "emptyDir": {
+        "sizeLimit": "50Gi"
+      },
+      "name": "temporary-storage"
+    },
+    {
+      "name": "khulnasoft-monitor-token-test",
+      "secret": {
+        "defaultMode": 420,
+        "secretName": "khulnasoft-monitor-token-test"
+      }
+    }
+  ]
+}
