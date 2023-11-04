@@ -61,3 +61,4 @@ opm
 .operator_version
 khulnasoft-monitor-catalog-source.yaml
 *.iml
+**/.DS_Store
